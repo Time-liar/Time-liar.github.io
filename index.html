@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh" class="has-navbar-fixed-top">
+  <head>
+  <meta charset="utf-8" />
+  
+  <title>首页 | Timeliar&#39;s Blog</title>
+  
+  <meta name="author" content="Timeliar" />
+   
+  <meta name="description" content="还有很多代码要写" />
+   
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1"
+  />
+
+  
+  <meta property="og:site_name" content="Timeliar&#39;s Blog" />
+
+  
+  <meta property="og:image" content="" />
+  
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <!-- rss -->
+  <link rel="alternate" href="/atom.xml" title="Timeliar's Blog" type="application/atom+xml">
+  <!-- bulma framework -->
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+  <!-- bulma extension -->
+  
+<link rel="stylesheet" href="/css/bulma-timeline.min.css">
+
+  <!-- fontawesome icon set -->
+  
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+  <!-- custom style -->
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  <!-- custom style -->
+  
+<link rel="stylesheet" href="/css/shoka.css">
+
+
+  <!-- prism enable -->
+  
+  <!-- prism theme -->
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css">
+
+  <style>
+    pre {
+      padding: 2rem 1rem 1rem 1rem !important;
+      border-radius: 0.35rem;
+      tab-size: 4;
+    }
+
+    .code-area::after {
+      content: " ";
+      position: absolute;
+      border-radius: 50%;
+      background: #ff5f56;
+      width: 12px;
+      height: 12px;
+      top: 0;
+      left: 12px;
+      margin-top: 12px;
+      -webkit-box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
+      box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
+    }
+
+    code {
+      padding: 1px 5px;
+      top: 13px !important;
+      font-family: Inconsolata, Monaco, Consolas, "Courier New", Courier,
+        monospace;
+      font-size: 0.91rem;
+      color: #e96900;
+      background-color: #f8f8f8;
+      border-radius: 2px;
+    }
+
+    .code_copy {
+      position: absolute;
+      top: 0.7rem;
+      right: 25px;
+      z-index: 1;
+      filter: invert(50%);
+      cursor: pointer;
+    }
+
+    .codecopy_notice {
+      position: absolute;
+      top: 0.7rem;
+      right: 6px;
+      z-index: 1;
+      filter: invert(50%);
+      opacity: 0;
+    }
+
+    .code_lang {
+      position: absolute;
+      top: 1.2rem;
+      right: 46px;
+      line-height: 0;
+      font-weight: bold;
+      font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+      z-index: 1;
+      filter: invert(50%);
+      cursor: pointer;
+    }
+
+    .code-expand {
+      position: absolute;
+      top: 4px;
+      right: 0;
+      filter: invert(50%);
+      padding: 7px;
+      z-index: 999 !important;
+      cursor: pointer;
+      transition: all 0.3s;
+      transform: rotate(0deg);
+    }
+
+    .code-closed .code-expand {
+      transform: rotate(-180deg) !important;
+      transition: all 0.3s;
+    }
+
+    .code-closed pre::before {
+      height: 0;
+    }
+
+    pre code {
+      padding: 0;
+      color: #e8eaf6;
+      background-color: #272822;
+    }
+  </style>
+  <!-- prism theme end -->
+  
+  <!-- jauery lib -->
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!--[if lt IE 9
+    ]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script
+  ><![endif]-->
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <script>
+      const LOCAL = {
+        quiz: {
+          choice: "单选题",
+          multiple: "多选题",
+          true_false: "判断题",
+          essay: "问答题",
+          gap_fill: "填空题",
+          mistake: "错题备注",
+        },
+      };
+    </script>
+    <nav
+  id="header-navbar"
+  class="navbar is-fixed-top is-link"
+  role="navigation"
+  aria-label="main navigation"
+>
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/ ">
+      <img
+        src="/logo.png"
+        alt="Timeliar's Blog"
+        height="28"
+        class="mr-2"
+      />
+      <b>Timeliar's Blog</b>
+    </a>
+    <a
+      role="button"
+      class="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a
+        class="navbar-item "
+        href="/archives"
+      >
+        归档
+      </a>
+      <a
+        class="navbar-item "
+        href="/friends"
+      >
+        友情链接
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <a class="navbar-item" href="javascript:void(0)">
+        <i class="fas fa-search"></i>
+      </a>
+      <a class="navbar-item" href="javascript:void(0)">
+        <i class="fas fa-comment"></i>
+      </a>
+    </div>
+  </div>
+</nav>
+<script>
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function () {
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
+  });
+</script>
+
+    <main class="container mt-4">
+      <div class="columns is-flex-direction-row">
+        <div class="column is-three-quarters is-justify-content-center">
+          
+<div class="card mb-4">
+  <header class="card-header" style="box-shadow: none">
+    <p class="is-size-4 card-header-title">
+      <a href="/post/3235466581.html"> 练习题样例 </a>
+    </p>
+    
+  </header>
+  <div class="card-content">
+    <p class="is-size-6">
+      
+      <a href="/post/3235466581.html">[阅读全文]</a>
+    </p>
+  </div>
+  <footer class="card-footer">
+    <button class="button is-white has-text-grey">
+      <time>2021-02-28</time>
+    </button>
+    
+    <div class="button is-white">
+      <!-- 页面设置了标签 -->
+      
+      <a href="/tags/Test/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Test
+      </a>
+      
+    </div>
+    
+  </footer>
+</div>
+
+<div class="card mb-4">
+  <header class="card-header" style="box-shadow: none">
+    <p class="is-size-4 card-header-title">
+      <a href="/post/2600766277.html"> 测试基本样式 </a>
+    </p>
+    
+      
+        <a href="/categories/craft/" class="button is-white">
+          <span class="icon mr-1">
+            <i class="fas fa-archive"></i>
+          </span>
+          折腾
+        </a>
+        
+    
+  </header>
+  <div class="card-content">
+    <p class="is-size-6">
+       主题开发过程中测试 Markdown 解析后效果专用文档 
+      <a href="/post/2600766277.html">[阅读全文]</a>
+    </p>
+  </div>
+  <footer class="card-footer">
+    <button class="button is-white has-text-grey">
+      <time>2021-02-10</time>
+    </button>
+    
+    <div class="button is-white">
+      <!-- 页面设置了标签 -->
+      
+      <a href="/tags/Test/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Test
+      </a>
+      
+    </div>
+    
+  </footer>
+</div>
+
+<div class="card mb-4">
+  <header class="card-header" style="box-shadow: none">
+    <p class="is-size-4 card-header-title">
+      <a href="/post/3263736420.html"> Hexo主题开发（Ginkgo） </a>
+    </p>
+    
+      
+        <a href="/categories/craft/" class="button is-white">
+          <span class="icon mr-1">
+            <i class="fas fa-archive"></i>
+          </span>
+          折腾
+        </a>
+        
+    
+  </header>
+  <div class="card-content">
+    <p class="is-size-6">
+       经历了诸多岁月和诸多 Hexo 主题尝试以后，决定自己开发一版简洁的，能实现基本功能的 Hexo 主题，作为一个折腾的小目标，让博客写作过程完全可控（指不用折腾主题配置）。
+作为一个常年后端搬砖工，前端满足于能看能点就 OK，不用去强求炫酷的特效和强大的功能。 
+      <a href="/post/3263736420.html">[阅读全文]</a>
+    </p>
+  </div>
+  <footer class="card-footer">
+    <button class="button is-white has-text-grey">
+      <time>2021-01-31</time>
+    </button>
+    
+    <div class="button is-white">
+      <!-- 页面设置了标签 -->
+      
+      <a href="/tags/hexo/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Hexo
+      </a>
+      
+    </div>
+    
+  </footer>
+</div>
+
+<div class="card mb-4">
+  <header class="card-header" style="box-shadow: none">
+    <p class="is-size-4 card-header-title">
+      <a href="/post/2175012096.html"> Nginx在Linux下的安装 </a>
+    </p>
+    
+      
+        <a href="/categories/server/" class="button is-white">
+          <span class="icon mr-1">
+            <i class="fas fa-archive"></i>
+          </span>
+          Server
+        </a>
+        
+    
+  </header>
+  <div class="card-content">
+    <p class="is-size-6">
+       本文使用的环境是 Ubuntu 17.10，其他发行版对于本文中的操作并没有什么影响 
+      <a href="/post/2175012096.html">[阅读全文]</a>
+    </p>
+  </div>
+  <footer class="card-footer">
+    <button class="button is-white has-text-grey">
+      <time>2017-09-06</time>
+    </button>
+    
+    <div class="button is-white">
+      <!-- 页面设置了标签 -->
+      
+      <a href="/tags/nginx/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Nginx
+      </a>
+      
+    </div>
+    
+  </footer>
+</div>
+
+<div class="card mb-4">
+  <header class="card-header" style="box-shadow: none">
+    <p class="is-size-4 card-header-title">
+      <a href="/post/985142654.html"> 关于匿名内部类的坑 </a>
+    </p>
+    
+  </header>
+  <div class="card-content">
+    <p class="is-size-6">
+       起因
+有一种初始化方法，写起来很爽，比如这样：
+Map&lt;String,String> map = new HashMap&lt;String,String>()&#123;
+  &#123;
+    put("name","timeliar");
+    put("name","timeliar");
+  &#125;
+&#125;; 
+      <a href="/post/985142654.html">[阅读全文]</a>
+    </p>
+  </div>
+  <footer class="card-footer">
+    <button class="button is-white has-text-grey">
+      <time>2017-03-13</time>
+    </button>
+    
+    <div class="button is-white">
+      <!-- 页面设置了标签 -->
+      
+      <a href="/tags/java/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Java
+      </a>
+      
+    </div>
+    
+  </footer>
+</div>
+
+<div class="card mb-4">
+  <header class="card-header" style="box-shadow: none">
+    <p class="is-size-4 card-header-title">
+      <a href="/post/1223633752.html"> 使用Let's Encrypt签署免费SSL证书 </a>
+    </p>
+    
+      
+        <a href="/categories/craft/" class="button is-white">
+          <span class="icon mr-1">
+            <i class="fas fa-archive"></i>
+          </span>
+          折腾
+        </a>
+        
+    
+  </header>
+  <div class="card-content">
+    <p class="is-size-6">
+       本文操作在 Linux 操作系统下完成，需要 Python 和 Nginx 
+      <a href="/post/1223633752.html">[阅读全文]</a>
+    </p>
+  </div>
+  <footer class="card-footer">
+    <button class="button is-white has-text-grey">
+      <time>2017-03-11</time>
+    </button>
+    
+    <div class="button is-white">
+      <!-- 页面设置了标签 -->
+      
+      <a href="/tags/https/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Https
+      </a>
+      
+    </div>
+    
+  </footer>
+</div>
+
+<div class="card mb-4">
+  <header class="card-header" style="box-shadow: none">
+    <p class="is-size-4 card-header-title">
+      <a href="/post/1953432701.html"> 恨恨而死 </a>
+    </p>
+    
+      
+        <a href="/categories/transfer/" class="button is-white">
+          <span class="icon mr-1">
+            <i class="fas fa-archive"></i>
+          </span>
+          转载
+        </a>
+        
+    
+  </header>
+  <div class="card-content">
+    <p class="is-size-6">
+       恨恨而死
+作者：鲁迅
+古来很有几位恨恨而死的人物。他们一面说些 “怀才不遇”“天道宁论” 的话，一面有钱的便狂嫖滥赌，没钱的便喝几十碗酒，—— 因为不平的缘故，于是后来就恨恨而死了。 
+      <a href="/post/1953432701.html">[阅读全文]</a>
+    </p>
+  </div>
+  <footer class="card-footer">
+    <button class="button is-white has-text-grey">
+      <time>2016-11-30</time>
+    </button>
+    
+    <div class="button is-white">
+      <!-- 页面设置了标签 -->
+      
+      <a href="/tags/article/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        文章
+      </a>
+      
+    </div>
+    
+  </footer>
+</div>
+
+<div class="card mb-4">
+  <header class="card-header" style="box-shadow: none">
+    <p class="is-size-4 card-header-title">
+      <a href="/post/1409658818.html"> linux下修改swap扩展内存 </a>
+    </p>
+    
+      
+        <a href="/categories/memory/" class="button is-white">
+          <span class="icon mr-1">
+            <i class="fas fa-archive"></i>
+          </span>
+          备忘录
+        </a>
+        
+    
+  </header>
+  <div class="card-content">
+    <p class="is-size-6">
+       刚入了一台 digital ocean 的 VPS，1 核 1G,30G+SSD 只要 10$, 遂在上面跑了一个 gitlab，作为个人 git 仓库，然而启动后出现了 502，已检查发现内存不够，原来默认没有分 swap（好坑），手动添加一下吧 
+      <a href="/post/1409658818.html">[阅读全文]</a>
+    </p>
+  </div>
+  <footer class="card-footer">
+    <button class="button is-white has-text-grey">
+      <time>2016-08-19</time>
+    </button>
+    
+    <div class="button is-white">
+      <!-- 页面设置了标签 -->
+      
+      <a href="/tags/linux/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Linux
+      </a>
+      
+    </div>
+    
+  </footer>
+</div>
+
+<div class="card mb-4">
+  <header class="card-header" style="box-shadow: none">
+    <p class="is-size-4 card-header-title">
+      <a href="/post/1411920408.html"> JS顺序插入数组 </a>
+    </p>
+    
+      
+        <a href="/categories/learning/" class="button is-white">
+          <span class="icon mr-1">
+            <i class="fas fa-archive"></i>
+          </span>
+          学习
+        </a>
+        
+    
+  </header>
+  <div class="card-content">
+    <p class="is-size-6">
+       给一个数组和一个数字，将数字插入数字指定位置，使数组有序，不使用遍历 
+      <a href="/post/1411920408.html">[阅读全文]</a>
+    </p>
+  </div>
+  <footer class="card-footer">
+    <button class="button is-white has-text-grey">
+      <time>2016-08-04</time>
+    </button>
+    
+    <div class="button is-white">
+      <!-- 页面设置了标签 -->
+      
+      <a href="/tags/alg/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        算法
+      </a>
+      
+    </div>
+    
+  </footer>
+</div>
+
+<div class="card mb-4">
+  <header class="card-header" style="box-shadow: none">
+    <p class="is-size-4 card-header-title">
+      <a href="/post/3117013983.html"> LeetCode 136. Single Number </a>
+    </p>
+    
+      
+        <a href="/categories/learning/" class="button is-white">
+          <span class="icon mr-1">
+            <i class="fas fa-archive"></i>
+          </span>
+          学习
+        </a>
+        
+    
+  </header>
+  <div class="card-content">
+    <p class="is-size-6">
+       Given an array of integers, every element appears twice except for one. Find that single one.
+大意为给定一个整数数组，数组中除了一个元素只有一个外，其他元素均出现两次，找出一个的这个元素 
+      <a href="/post/3117013983.html">[阅读全文]</a>
+    </p>
+  </div>
+  <footer class="card-footer">
+    <button class="button is-white has-text-grey">
+      <time>2016-07-28</time>
+    </button>
+    
+    <div class="button is-white">
+      <!-- 页面设置了标签 -->
+      
+      <a href="/tags/alg/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        算法
+      </a>
+      
+    </div>
+    
+  </footer>
+</div>
+
+
+<!-- Index nav -->
+
+<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+  <ul class="pagination-list"><li><span class="pagination-link is-current">1</span></li><li><a class="pagination-link" href="/page/2/">2</a></li></ul><a class="pagination-next" rel="next" href="/page/2/">下一页</a>
+</nav>
+
+
+<script>
+  $(".dropdown-trigger").click(function () {
+    $(this).parent().toggleClass("is-active");
+  });
+</script>
+
+        </div>
+        <aside class="column"><div class="card">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img src="/assets/avatar.gif" alt="Timeliar" />
+        </figure>
+      </div>
+      <div class="media-content">
+        <p class="title is-4">Timeliar</p>
+        <p class="subtitle is-6">
+           还有很多代码要写 
+        </p>
+      </div>
+    </div>
+
+    <div class="content">
+       还有很多代码要写 
+    </div>
+  </div>
+  
+  <footer class="card-footer">
+    <!-- email -->
+    
+    <a href="mailto:timeliar.lee@gmail.com" class="card-footer-item">
+      <span class="icon"><i class="fas fa-lg fa-envelope"></i></span>
+    </a>
+    
+    <!-- github  -->
+    
+    <a target="_blank" rel="noopener" href="https://github.com/timeliar" class="card-footer-item">
+      <span class="icon"><i class="fab fa-lg fa-github-square"></i></span>
+    </a>
+    
+    <!-- twitter  -->
+    
+    <!-- twitter  -->
+    
+    <a target="_blank" rel="noopener" href="https://about.me/timeliar" class="card-footer-item">
+      <span class="icon"><i class="fas fa-lg fa-id-card"></i></span>
+    </a>
+    
+  </footer>
+  
+</div>
+<div class="is-sticky">
+  
+  <div class="card mt-4">
+    <header class="card-header" style="box-shadow: none">
+      <p class="is-size-5 card-header-title">标签集</p>
+    </header>
+    <div class="card-content">
+      
+      <a href="/tags/hexo/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Hexo
+      </a>
+      
+      <a href="/tags/alg/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        算法
+      </a>
+      
+      <a href="/tags/nginx/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Nginx
+      </a>
+      
+      <a href="/tags/linux/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Linux
+      </a>
+      
+      <a href="/tags/maven/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        maven
+      </a>
+      
+      <a href="/tags/https/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Https
+      </a>
+      
+      <a href="/tags/java/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Java
+      </a>
+      
+      <a href="/tags/article/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        文章
+      </a>
+      
+      <a href="/tags/compiler/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        编译原理
+      </a>
+      
+      <a href="/tags/Test/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        Test
+      </a>
+      
+      <a href="/tags/daily/" class="tag is-info icon-text">
+        <span class="icon mr-1">
+          <i class="fas fa-tag"></i>
+        </span>
+        日常
+      </a>
+      
+    </div>
+  </div>
+  <div class="card mt-4">
+    <header class="card-header" style="box-shadow: none">
+      <p class="is-size-5 card-header-title">分类</p>
+    </header>
+    <div class="card-content">
+      <div class="menu">
+        <ul class="menu-list">
+          
+          <li>
+            <a href="/categories/craft/">
+              <span class="icon mr-1">
+                <i class="fas fa-archive"></i>
+              </span>
+              折腾
+            </a>
+          </li>
+          
+          <li>
+            <a href="/categories/learning/">
+              <span class="icon mr-1">
+                <i class="fas fa-archive"></i>
+              </span>
+              学习
+            </a>
+          </li>
+          
+          <li>
+            <a href="/categories/server/">
+              <span class="icon mr-1">
+                <i class="fas fa-archive"></i>
+              </span>
+              Server
+            </a>
+          </li>
+          
+          <li>
+            <a href="/categories/memory/">
+              <span class="icon mr-1">
+                <i class="fas fa-archive"></i>
+              </span>
+              备忘录
+            </a>
+          </li>
+          
+          <li>
+            <a href="/categories/transfer/">
+              <span class="icon mr-1">
+                <i class="fas fa-archive"></i>
+              </span>
+              转载
+            </a>
+          </li>
+          
+          <li>
+            <a href="/categories/backup/">
+              <span class="icon mr-1">
+                <i class="fas fa-archive"></i>
+              </span>
+              备用
+            </a>
+          </li>
+          
+          <li>
+            <a href="/categories/review/">
+              <span class="icon mr-1">
+                <i class="fas fa-archive"></i>
+              </span>
+              纠错
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</aside>
+      </div>
+    </main>
+    <footer class="footer mt-4">
+  <div class="content has-text-centered">
+    <p>
+      &copy; 2021
+      <strong>Timeliar's Blog</strong>
+      Powered by
+      <a href="https://hexo.io/" class="link-secondary" _target="blank">Hexo</a>
+      and <a target="_blank" rel="noopener" href="https://github.com/timeliar/hexo-theme-ginkgo">Ginkgo</a> theme
+    </p>
+  </div>
+</footer>
+
+  </body>
+</html>
